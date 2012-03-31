@@ -1,8 +1,8 @@
 <?php
 
-class Entrenador extends CI_Model {
+class Grupo extends CI_Model {
 
-  var $table = 'entrenador';
+  var $table = 'grupo';
   
   function __construct() {
     parent::__construct();
@@ -11,26 +11,40 @@ class Entrenador extends CI_Model {
   function get($id = null) {
     if(is_null($id))
       return array();
-    
-    // compact('id') == array('id' => $id)    
-    $query = $this->db->get_where($this->table, compact('id'));
+
+    $this->db->select('*');
+    $this->db->from($this->table);
+    $this->db->join('entrenador', 'entrenador.id = grupo.entrenador_id');
+
+    $query = $this->db->get();
     $row = $query->result();
     $data = $row[0];
     
     return array(
-      'nombre' => $data->nombre,
-      'email' => $data->email);    
+      'id_grupo' => $data->id,
+      'nombre_grupo' => $data->nombre_grupo,
+      'entrenador_id' => $data->entrenador_id,
+      'nombre_entrenador' => $data->nombre,
+      'email' => $data->email);
+
   }
 
   function getAll() {
-    $query = $this->db->get($this->table);
+    $this->db->select('*');
+    $this->db->from($this->table);
+    $this->db->join('entrenador', 'entrenador.id = grupo.entrenador_id');
+    
+    $query = $this->db->get();
     $rows = $query->result();
 
     $data = array();
     foreach($rows as $row) {
       $data[] = array(
-	'nombre' => $row->nombre,
-	'email' => $row->email,);
+	'id_grupo' => $row->id,
+	'nombre_grupo' => $row->nombre_grupo,
+	'entrenador_id' => $row->entrenador_id,
+	'nombre_entrenador' => $row->nombre,
+	'email' => $row->email);
     }
 
     return $data;

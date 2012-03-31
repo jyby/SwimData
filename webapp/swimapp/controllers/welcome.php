@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php 
 
 class Welcome extends CI_Controller {
 
@@ -17,9 +17,10 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
-		$this->load->view('welcome');
+	public function index() {
+	  $data['main_content'] = 'welcome';
+	  $this->load->view('templates/layout', $data);
+	  
 	}
 }
 
