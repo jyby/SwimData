@@ -18,6 +18,7 @@ class Nadador extends CI_Model {
     $data = $row[0];
     
     return array(
+      'id' => $data->id,
       'nombre' => $data->nombre,
       'email' => $data->email,
       'codigo_curso' => $data->codigo_curso,
@@ -34,6 +35,7 @@ class Nadador extends CI_Model {
     $data = array();
     foreach($rows as $row) {
       $data[] = array(
+	'id' => $row->id,
 	'nombre' => $row->nombre,
 	'email' => $row->email,
 	'codigo_curso' => $row->codigo_curso,
@@ -61,6 +63,39 @@ class Nadador extends CI_Model {
       $this->db->where('id', $id);
       $this->db->update($this->table, $data);
     }
-  }  
+  }
+
+  function validate() {
+    $this->db->where('email', $this->input->post('email'));
+    $this->db->where('password', sha1($this->input->post('password')));
+    
+    $query = $this->db->get('nadador');
+
+    if( $query->num_rows == 1 ) {
+      $nadador = $query->result();      
+      return $this->get( $nadador[0]->id );
+      
+    } else {
+      return FALSE;
+      
+    } 
+  }
+
+  function register() {
+    if( strcmp($this->input->post('password'), $this->input->post('password2')) != 0 )
+      return FALSE;
+    
+    $data = array(
+      'nombre' => $this->input->post('nombre'),
+      'email' => $this->input->post('email'),
+      'codigo_curso' => $this->input->post('codigo_curso'),
+      'participa_rama' => $this->input->post('participa_rama'),
+      'edad' => $this->input->post('edad'),
+      'estatura' => $this->input->post('estatura'),
+      'peso' => $this->input->post('peso'),
+      'password' => sha1($this->input->post('password')));
+
+    $this->add($data);
+  }
   
 }

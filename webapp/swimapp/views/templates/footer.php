@@ -1,6 +1,9 @@
+
+</div>
 <!-- FOOTER -->
 <footer>
-   FOOTER
+<hr />
+<div class="footer">EI2001-32 Taller de Proyecto 2012, Semestre Oto&ntilde;o</div>
 </footer>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>

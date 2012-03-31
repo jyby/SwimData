@@ -124,3 +124,35 @@ td { vertical-align: top; }
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; }
 }
+
+
+
+/* ============================================================================
+   YOUR CODE HERE!
+   ============================================================================ */
+
+body {
+    padding: 0.2em;
+    }
+
+input {
+    display:block;
+    }
+
+h1.title {
+    font-size: 1.5em;
+    }
+
+div.footer {
+    font-size: 0.9em;
+    text-align: center;
+    color: gray;
+    }
+
+div.form {
+    padding: 1em;
+    }
+
+div.form input {
+    margin: 1em;
+    }

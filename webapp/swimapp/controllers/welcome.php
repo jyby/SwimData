@@ -17,10 +17,32 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index() {
+	function index() {
 	  $data['main_content'] = 'welcome';
-	  $this->load->view('templates/layout', $data);
+	  $this->load->view('templates/layout', $data);	  
+	}
+
+	function login() {
 	  
+	  $this->load->model('Nadador');
+	  $query = $this->Nadador->validate();
+
+	  if($query) {
+	    $this->session->set_userdata($query);
+	    redirect('nadadores');
+	    
+	  } else {
+	    $this->wrong();	    
+	  }
+	  
+	}
+
+	function wrong() {
+	  echo "Usuario y/o contraseña incorrecto(s)";
+	}
+
+	function registro() {
+
 	}
 }
 
