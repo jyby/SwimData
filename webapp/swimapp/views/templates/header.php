@@ -11,7 +11,7 @@
    <meta name="viewport" content="width=device-width">
 
    <link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css">
-   <script src="js/libs/modernizr-2.5.3.min.js"></script>
+   <script src="<?php echo base_url(); ?>js/libs/modernizr-2.5.3.min.js"></script>
 </head>
 <body>
    

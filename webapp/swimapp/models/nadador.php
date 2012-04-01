@@ -96,6 +96,7 @@ class Nadador extends CI_Model {
       'password' => sha1($this->input->post('password')));
 
     $this->add($data);
+    return TRUE;
   }
   
 }

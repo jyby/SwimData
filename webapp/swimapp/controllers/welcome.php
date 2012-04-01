@@ -17,33 +17,57 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	function index() {
-	  $data['main_content'] = 'welcome';
-	  $this->load->view('templates/layout', $data);	  
-	}
-
-	function login() {
+  function __set_view($view_name = '', $data = array()) {
+    $data['main_content'] = $view_name;
+    $this->load->view('templates/layout', $data);
+  }
+  
+  function index() {
+    $this->__set_view('welcome');
+  }
+  
+  function login() {
+    
+    $this->load->model('Nadador');
+    $query = $this->Nadador->validate();
 	  
-	  $this->load->model('Nadador');
-	  $query = $this->Nadador->validate();
+    if($query) {
+      $this->session->set_userdata($query);
+      redirect('nadadores');
+      
+    } else {
+      $this->wrong();	    
+    }
+    
+  }
+  
+  function wrong() {
+    echo "Usuario y/o contraseña incorrecto(s)";
+  }
 
-	  if($query) {
-	    $this->session->set_userdata($query);
-	    redirect('nadadores');
-	    
-	  } else {
-	    $this->wrong();	    
-	  }
-	  
-	}
+  function wrong2() {
+    echo "Las contraseñas no coinciden";
+  }
 
-	function wrong() {
-	  echo "Usuario y/o contraseña incorrecto(s)";
-	}
-
-	function registro() {
-
-	}
+  function right() {
+    echo "Registrado exitosamente";
+  }
+     
+  function registro() {
+    if($this->input->post('submit')) {
+      
+      $this->load->model('Nadador');
+      $query = $this->Nadador->register();
+      
+      if($query) {
+	$this->right();
+      } else {    
+	$this->wrong2();
+      }
+    } else {
+      $this->__set_view('registro');
+    }
+  }
 }
 
 /* End of file welcome.php */
