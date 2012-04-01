@@ -102,5 +102,6 @@ class Nadador extends CI_Model {
     $this->add($data);
     return TRUE;
   }
+
   
 }
