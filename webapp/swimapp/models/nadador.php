@@ -69,7 +69,7 @@ class Nadador extends CI_Model {
     $this->db->where('email', $this->input->post('email'));
     $this->db->where('password', sha1($this->input->post('password')));
     
-    $query = $this->db->get('nadador');
+    $query = $this->db->get($this->table);
 
     if( $query->num_rows == 1 ) {
       $nadador = $query->result();      
@@ -83,6 +83,10 @@ class Nadador extends CI_Model {
 
   function register() {
     if( strcmp($this->input->post('password'), $this->input->post('password2')) != 0 )
+      return FALSE;
+
+    $reps = $this->db->get_where($this->table, array('email' => $this->input->post('email')));    
+    if ($reps->num_rows == 1)
       return FALSE;
     
     $data = array(

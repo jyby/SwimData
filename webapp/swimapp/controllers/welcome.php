@@ -46,7 +46,7 @@ class Welcome extends CI_Controller {
   }
 
   function wrong2() {
-    echo "Las contraseñas no coinciden";
+    echo "Las contraseñas no coinciden o el usuario ya existe";
   }
 
   function right() {
