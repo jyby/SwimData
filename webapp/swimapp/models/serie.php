@@ -42,10 +42,14 @@ class Serie extends CI_Model {
       'evaluacion' => $d->evaluacion);
   }
 
-  function getAll() {
-    $query = $this->db->get($this->table);
-    $rows = $query->result();
+  function getAll($nadador_id = null) {
+    if(is_null($nadador_id)) {
+      $query = $this->db->get($this->table);
+    } else {
+      $query = $this->db->get_where($this->table, compact('nadador_id'));      
+    }
 
+    $rows = $query->result();
     $data = array();
     foreach($rows as $d) {
       $data[] = array(
