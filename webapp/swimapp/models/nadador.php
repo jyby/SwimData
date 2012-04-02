@@ -15,6 +15,7 @@ class Nadador extends CI_Model {
     // compact('id') == array('id' => $id)    
     $query = $this->db->get_where($this->table, compact('id'));
     $row = $query->result();
+            
     $data = $row[0];
     
     return array(

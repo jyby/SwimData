@@ -37,19 +37,16 @@ class Welcome extends CI_Controller {
     $this->_set_view('welcome');
   }
   
-  function login() {
-    
+  function login() {    
     $this->load->model('Nadador');
     $query = $this->Nadador->validate();
-	  
+        
     if($query) {
       $this->session->set_userdata($query);
       redirect('nadadores');
-      
     } else {
-      $this->wrong();	    
-    }
-    
+      $this->wrong();
+    }    
   }
   
   function wrong() {
