@@ -1,4 +1,37 @@
-<?php print_r($nadador); ?>
+<table>
+  <tr>
+    <td>Nombre:</td>
+    <td><?php echo $nadador['nombre']; ?></td>
+  </tr>
+  <tr>
+    <td>E-Mail:</td>
+    <td><?php echo $nadador['email']; ?></td>
+  </tr>
+  <tr>
+    <td>Curso:</td>
+    <td><?php echo $nadador['codigo_curso']; ?></td>
+  </tr>
+  <tr>
+    <td>Participa en la Rama?:</td>
+    <td><?php echo $nadador['participa_rama'] ? 'Si' : 'No'; ?></td>
+  </tr>
+  <tr>
+    <td>Edad:</td>
+    <td><?php echo $nadador['edad']; ?></td>
+  </tr>
+  <tr>
+    <td>Estatura:</td>
+    <td><?php echo $nadador['estatura']; ?></td>
+  </tr>
+  <tr>
+    <td>Peso:</td>
+    <td><?php echo $nadador['peso']; ?></td>
+  </tr>
+</table>
+
+<br />
+<br />
+
 
 <div>
 <span>Subir archivo CSV</span>
@@ -7,8 +40,12 @@
 echo form_open_multipart('nadadores/upload');
 echo form_upload('file', 'Archivo CSV');
 echo form_submit('submit', 'Subir');
+echo '<br />';
 echo form_close();
 ?>
+
+<br />
+<br />
 
 <table>
   <thead>
